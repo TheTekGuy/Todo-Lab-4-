@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.usmanhussain.todolistapp">
+package="com.example.usmanhussain.Todoapp">
 
 <application
     android:allowBackup="true"
@@ -9,7 +9,7 @@ package="com.example.usmanhussain.todolistapp">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".TodoListActivity">
+    <activity android:name="com.example.usmanhussain.Todoapp.TodoListActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
 
@@ -17,8 +17,22 @@ package="com.example.usmanhussain.todolistapp">
         </intent-filter>
     </activity>
     <activity
-        android:name=".TodoActivity"
-        android:parentActivityName=".TodoListActivity">
+        android:name="com.example.usmanhussain.Todoapp.TodoActivity"
+        android:parentActivityName="com.example.usmanhussain.Todoapp.TodoListActivity">
+    </activity>
+    <activity
+        android:name="com.example.usmanhussain.Todoapp.TodoPagerActivity"
+        android:parentActivityName="com.example.usmanhussain.Todoapp.TodoListActivity">
+    </activity>
+
+    <activity
+    android:name="com.example.usmanhussain.Todoapp.TodoSearchActivity">
+</activity>
+
+    <activity
+        android:name="com.example.usmanhussain.Todoapp.TodoSearchPageActivity">
+        android:parentActivityName="com.example.usmanhussain.Todoapp.TodoSearchActivity">
+
     </activity>
 
 </application>

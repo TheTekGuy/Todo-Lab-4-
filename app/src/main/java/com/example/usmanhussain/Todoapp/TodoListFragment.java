@@ -1,16 +1,18 @@
-package com.example.usmanhussain.todolistapp;
+package com.example.usmanhussain.Todoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,8 @@ public class TodoListFragment extends Fragment {
 
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -47,7 +51,9 @@ public class TodoListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.search_menu, menu);
         inflater.inflate(R.menu.fragment_todo_list, menu);
+
     }
 
     @Override
@@ -63,6 +69,10 @@ public class TodoListFragment extends Fragment {
 
                 return true;
 
+            case R.id.search_menu:
+
+                Intent myIntent = new Intent(getActivity(), TodoSearchActivity.class);
+                startActivity(myIntent);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -96,6 +106,8 @@ public class TodoListFragment extends Fragment {
         private Todo mTodo;
         private TextView mTextViewTitle;
         private TextView mTextViewDate;
+        private TextView mTextViewStatus;
+        private CheckBox checkBox;
 
         public TodoHolder(LayoutInflater inflater, ViewGroup parent) {
 
@@ -105,7 +117,8 @@ public class TodoListFragment extends Fragment {
 
             mTextViewTitle = (TextView) itemView.findViewById(R.id.todo_title);
             mTextViewDate = (TextView) itemView.findViewById(R.id.todo_date);
-
+            mTextViewStatus = (TextView) itemView.findViewById(R.id.status);
+            checkBox = (CheckBox) itemView.findViewById(R.id.status);
         }
 
         @Override
@@ -117,15 +130,18 @@ public class TodoListFragment extends Fragment {
                     Toast.LENGTH_SHORT)
                     .show();
 
-            Intent intent = TodoActivity.newIntent(getActivity(), mTodo.getId());
+            Intent intent = TodoPagerActivity.newIntent(getActivity(), mTodo.getId());
             startActivity(intent);
 
         }
+
+
 
         public void bind(Todo todo){
             mTodo = todo;
             mTextViewTitle.setText(mTodo.getTitle());
             mTextViewDate.setText(mTodo.getDate().toString());
+            checkBox.setChecked(mTodo.isComplete());
         }
 
     }
@@ -134,8 +150,8 @@ public class TodoListFragment extends Fragment {
 
         private List<Todo> mTodos;
 
-        public TodoAdapter(List<Todo> todos) {
-            mTodos = todos;
+        public TodoAdapter(List<Todo> todo) {
+            mTodos = todo;
         }
 
         @Override

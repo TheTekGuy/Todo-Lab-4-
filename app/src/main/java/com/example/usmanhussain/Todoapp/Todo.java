@@ -1,18 +1,21 @@
-package com.example.usmanhussain.todolistapp;
+package com.example.usmanhussain.Todoapp;
 import java.util.Date;
 import java.util.UUID;
+import java.text.*;
 
 public class Todo {
 
     private UUID mId;
     private String mTitle;
     private String mDetail;
-    private Date mDate;
+    private String mDate;
     private boolean mIsComplete;
 
     public Todo() {
         mId = UUID.randomUUID();
-        mDate = new Date();
+        Date date = new Date();
+        SimpleDateFormat fd = new SimpleDateFormat("E dd.MM.yyyy 'at' hh:mm:ss a ");
+        mDate = fd.format(date);
     }
 
     public UUID getId() {
@@ -39,11 +42,11 @@ public class Todo {
         mDetail = detail;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return mDate;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         mDate = date;
     }
 
@@ -54,6 +57,5 @@ public class Todo {
     public void setComplete(boolean complete) {
         mIsComplete = complete;
     }
-
 
 }

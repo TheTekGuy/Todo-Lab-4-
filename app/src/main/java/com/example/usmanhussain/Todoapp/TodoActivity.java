@@ -1,4 +1,4 @@
-package com.example.usmanhussain.todolistapp;
+package com.example.usmanhussain.Todoapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class TodoActivity extends AppCompatActivity {
     }
 
     /*
-    To decouple the fragment and make it reusable, the TodoFragment has a newInstance method
+    To decouple the fragment and make it reusable, the BookFragment has a newInstance method
     that receives a todoId and returns the fragment
      */
     protected Fragment createFragment(){
@@ -43,7 +43,5 @@ public class TodoActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, todoFragment)
                     .commit();
         }
-
     }
-
 }

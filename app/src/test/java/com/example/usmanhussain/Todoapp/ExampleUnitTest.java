@@ -1,4 +1,4 @@
-package com.example.usmanhussain.todolistapp;
+package com.example.usmanhussain.Todoapp;
 
 import org.junit.Test;
 
